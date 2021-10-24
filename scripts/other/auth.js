@@ -1,7 +1,9 @@
 const adminDash = document.querySelector(".adminDash");
 
-adminDash.addEventListener("click", (e) => {
+adminDash.addEventListener("click", () => {
 	if (!sessionStorage.getItem("adminLoggedIn")) {
-		console.log(e);
+		location.replace("./sign-in.html");
+	} else {
+		// Code to redirect to admin panel here...
 	}
 });
