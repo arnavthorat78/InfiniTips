@@ -11,12 +11,14 @@ signIn.addEventListener("submit", (e) => {
 		passwordInput.classList.remove("is-invalid");
 		feedback.classList.remove("invalid-feedback");
 
+		sessionStorage.setItem("adminLoggedIn", "true");
+
 		passwordInput.classList.add("is-valid");
 		feedback.classList.add("valid-feedback");
 		feedback.innerHTML = "The password is valid! Redirecting you to the admin dashboard...";
 
 		setTimeout(() => {
-			// Code to redirect here...
+			location.replace("./admin-panel.html");
 		}, 2500);
 	} else {
 		passwordInput.classList.add("is-invalid");
