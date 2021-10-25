@@ -1,94 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<!-- Loading Bootstrap styling and Bootstrap icons -->
-		<link
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-			rel="stylesheet"
-			integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-			crossorigin="anonymous"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css"
-		/>
-		<!-- Loading custom CSS -->
-		<link rel="stylesheet" href="./styles/signIn.css" />
-		<!-- Loading icon and title -->
-		<link rel="icon" href="./assets/img/InfiniTips-Logo.png" />
-		<title>InfiniTips | Sign In</title>
-	</head>
-	<body style="text-align: center">
-		<main class="form-signin">
-			<form class="signIn">
-				<img
-					class="img-fluid mb-3"
-					src="./assets/img/InfiniTips.png"
-					alt="InfiniTips"
-					width="100"
-					height="100"
-					draggable="false"
-				/>
-				<h1 class="h3 mb-3 fw-normal">Sign In</h1>
-				<p class="text-muted lead">Sign in to access the admin panel.</p>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Loading Bootstrap styling and Bootstrap icons -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css"
+        />
+        <!-- Loading custom CSS -->
+        <link rel="stylesheet" href="./styles/signIn.css" />
+        <!-- Loading icon and title -->
+        <link rel="icon" href="./assets/img/InfiniTips-Logo.png" />
+        <title>InfiniTips | Sign In</title>
+    </head>
+    <body style="text-align: center">
+        <!-- No navbar since it is like a popup! -->
 
-				<div class="form-floating">
-					<input
-						type="password"
-						class="passwordInput form-control"
-						id="floatingPassword"
-						name="password"
-						placeholder="Password..."
-						required
-					/>
-					<label for="floatingPassword">Password</label>
+        <main class="form-signin">
+			<!-- Everything (except the Back Home link) is in the <form> element. TODO Fix this. -->
+            <form class="signIn">
+				<!-- The information of what the webpage is for. -->
+                <img
+                    class="img-fluid mb-3"
+                    src="./assets/img/InfiniTips.png"
+                    alt="InfiniTips"
+                    width="100"
+                    height="100"
+                    draggable="false"
+                />
+                <h1 class="h3 mb-3 fw-normal">Sign In</h1>
+                <p class="text-muted lead">Sign in to access the admin panel.</p>
 
-					<div id="floatingPasswordFeedback" class="feedback"></div>
-				</div>
+				<!-- The password confirmation, and feedback for if the password was incorrect or not. This is handled with JavaScript. -->
+                <div class="form-floating">
+                    <input
+                        type="password"
+                        class="passwordInput form-control"
+                        id="floatingPassword"
+                        name="password"
+                        placeholder="Password..."
+                        required
+                    />
+                    <label for="floatingPassword">Password</label>
 
-				<button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Sign In</button>
+                    <div id="floatingPasswordFeedback" class="feedback"></div>
+                </div>
 
-				<p class="mt-5 mb-3 text-muted">
-					Copyright &copy; 2021
-					<a class="text-reset fw-normal text-decoration-none" href="index.html"
-						>InfiniTips</a
-					>.
-				</p>
-			</form>
+				<!-- Submit button -->
+                <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Sign In</button>
 
-			<a href="index.html" class="text-primary fw-bold text-decoration-none">
-				<i class="bi bi-arrow-left"></i>&nbsp;Back Home
-			</a>
-		</main>
+				<!-- Copyright -->
+                <p class="mt-5 mb-3 text-muted">
+                    Copyright &copy; 2021
+                    <a class="text-reset fw-normal text-decoration-none" href="index.html"
+                        >InfiniTips</a
+                    >.
+                </p>
+            </form>
 
-		<!-- Loading Bootstrap scripts -->
-		<script
-			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-			integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-			crossorigin="anonymous"
-		></script>
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-			integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-			crossorigin="anonymous"
-		></script>
+			<!-- 'Back Home' link, for if the user accidentally came here. -->
+            <a href="index.html" class="text-primary fw-bold text-decoration-none">
+                <i class="bi bi-arrow-left"></i>&nbsp;Back Home
+            </a>
+        </main>
 
-		<!-- Loading Google hosted JQuery scripts -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- Loading Bootstrap scripts -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+            integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+            integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+            crossorigin="anonymous"
+        ></script>
 
-		<!-- Loading custom scripts -->
-		<script src="./scripts/other/consoleWarn.js"></script>
-		<script src="./scripts/admin/signIn.js"></script>
+        <!-- Loading Google hosted JQuery scripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-		<!-- Using JQuery scripts -->
-		<script>
-			// Disabling right-click on images
-			$("body").on("contextmenu", "img", (e) => {
-				return false;
-			});
-		</script>
-	</body>
+        <!-- Loading custom scripts -->
+        <script src="./scripts/other/consoleWarn.js"></script>
+        <script src="./scripts/admin/signIn.js"></script>
+
+        <!-- Using JQuery scripts -->
+        <script>
+            // Disabling right-click on images
+            $("body").on("contextmenu", "img", (e) => {
+                return false;
+            });
+        </script>
+    </body>
 </html>

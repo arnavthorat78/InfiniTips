@@ -1,3 +1,5 @@
+/* Thanks to Medium.com for providing the simple code for the typewriter! */
+
 .typing-container {
 	display: flex;
 	justify-content: center;
@@ -7,7 +9,7 @@
 	display: inline-block;
 	width: 2px;
 	height: 42px;
-	background-color: #dc3545;
+	background-color: #dc3545; /* Same as Bootstrap's danger colour */
 }
 
 @keyframes blink {
