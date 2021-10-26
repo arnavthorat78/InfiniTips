@@ -8,7 +8,7 @@ const deleteFeedback = document.querySelector(".deleteFeedback");
 
 const addVideo = (video, id) => {
 	let html = `
-        <div class="card mt-3 shadow-sm" data-id="${id}">
+        <div class="card mt-3 shadow-sm video" data-id="${id}">
             <div class="card-body">
                 <div class="row">
                     <div class="col-8 border-end border-2">
@@ -45,18 +45,29 @@ const addVideo = (video, id) => {
 	list.innerHTML = html + list.innerHTML;
 };
 
+const deleteVideo = (id) => {
+	const video = document.querySelectorAll(".video");
+	video.forEach((video) => {
+		if (video.getAttribute("data-id") === id) {
+			video.remove();
+		}
+	});
+};
+
 db.collection("videos")
 	.orderBy("created_at", "asc")
-	.get()
-	.then((snapshot) => {
-		loadingVideos.classList.add("d-none");
+	.onSnapshot((snapshot) => {
+		snapshot.docChanges().forEach((change) => {
+			const doc = change.doc;
 
-		snapshot.docs.forEach((doc) => {
-			addVideo(doc.data(), doc.id);
+			loadingVideos.classList.add("d-none");
+
+			if (change.type === "added") {
+				addVideo(doc.data(), doc.id);
+			} else if (change.type === "removed") {
+				deleteVideo(doc.id);
+			}
 		});
-	})
-	.catch((err) => {
-		console.log(err);
 	});
 
 addVideoForm.addEventListener("submit", (e) => {
