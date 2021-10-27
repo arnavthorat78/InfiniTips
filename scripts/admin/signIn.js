@@ -2,17 +2,31 @@
 const signIn = document.querySelector(".signIn");
 const passwordInput = document.querySelector(".passwordInput");
 const feedback = document.querySelector(".feedback");
+const submitButton = document.querySelector(".submit");
 
-// The password.
-// TODO Add this in Firebase.
-const PASSWORD = "adminPasswordVideos";
+// Disabled, since sill getting the password.
+submitButton.disabled = true;
+
+// Setting the default password
+let password = "";
+
+// Getting the password
+db.collection("credentials")
+	.get()
+	.then((documents) => {
+		password = documents.docs[0].data().password;
+		submitButton.disabled = false;
+	})
+	.catch((err) => {
+		console.log(err);
+	});
 
 // Waiting for the form to be submitted, and preventing the page from reloading.
 signIn.addEventListener("submit", (e) => {
 	e.preventDefault();
 
 	// Check if the password is valid.
-	if (signIn.password.value === PASSWORD) {
+	if (signIn.password.value === password) {
 		// Remove the invalid feedback (if there was any).
 		passwordInput.classList.remove("is-invalid");
 		feedback.classList.remove("invalid-feedback");
