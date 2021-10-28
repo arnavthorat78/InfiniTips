@@ -39,48 +39,152 @@
 				<h1 class="h3 mb-3 fw-normal">Pay</h1>
 				<p class="text-muted lead">You must pay to access and watch videos.</p>
 
-				<!-- The password confirmation, and feedback for if the password was incorrect or not. This is handled with JavaScript. -->
-				<div class="form-check text-start mb-1">
-					<input
-						class="form-check-input"
-						type="radio"
-						name="method"
-						id="paypal"
-						checked
-					/>
-					<label class="form-check-label" for="paypal">PayPal</label>
-				</div>
-				<div class="form-check text-start mb-1">
-					<input class="form-check-input" type="radio" name="method" id="mastercard" />
-					<label class="form-check-label" for="mastercard">Mastercard</label>
-				</div>
-				<div class="form-check text-start mb-3">
-					<input
-						class="form-check-input"
-						type="radio"
-						name="method"
-						id="americanExpress"
-					/>
-					<label class="form-check-label" for="americanExpress">American Express</label>
-				</div>
+				<div class="overflow overflow-auto p-1">
+					<h5 class="text-start">Billing Country</h5>
+					<select class="form-select" required>
+						<option value="australia" selected>Australia</option>
+						<option value="newZealand">New Zealand</option>
+						<option value="india">India</option>
+						<option value="usa">United States of America</option>
+						<option value="other">Other</option>
+					</select>
+					<div class="text-muted mb-3 mt-1 text-start">
+						<small
+							>Countries are limited to the above. If you live in a country other than
+							specified, select <i>Other</i>.</small
+						>
+					</div>
 
-				<div class="form-floating">
-					<input
-						type="password"
-						class="passwordInput form-control"
-						id="floatingPassword"
-						name="password"
-						placeholder="Password..."
-						required
-					/>
-					<label for="floatingPassword">Password...</label>
+					<h5 class="text-start">Payment Method</h5>
+					<div class="form-check text-start mb-1">
+						<input
+							class="form-check-input"
+							type="radio"
+							name="method"
+							id="paypal"
+							checked
+						/>
+						<label class="form-check-label" for="paypal">
+							<img
+								class="img-fluid"
+								src="./assets/archive/PayPal.png"
+								alt="Paypal"
+								width="25"
+								height="25"
+								draggable="false"
+							/>
+							&nbsp;PayPal
+						</label>
+					</div>
+					<div class="form-check text-start mb-1">
+						<input
+							class="form-check-input"
+							type="radio"
+							name="method"
+							id="mastercard"
+						/>
+						<label class="form-check-label" for="mastercard">
+							<img
+								class="img-fluid"
+								src="./assets/archive/Mastercard.png"
+								alt="Mastercard"
+								width="25"
+								height="25"
+								draggable="false"
+							/>
+							&nbsp;Mastercard
+						</label>
+					</div>
+					<div class="form-check text-start mb-1">
+						<input
+							class="form-check-input"
+							type="radio"
+							name="method"
+							id="americanExpress"
+						/>
+						<label class="form-check-label" for="americanExpress">
+							<img
+								class="img-fluid"
+								src="./assets/archive/American-Express.png"
+								alt="American Express"
+								width="25"
+								height="25"
+								draggable="false"
+							/>
+							&nbsp;American Express
+						</label>
+					</div>
+					<div class="form-check text-start mb-3">
+						<input class="form-check-input" type="radio" name="method" id="visa" />
+						<label class="form-check-label" for="visa">
+							<img
+								class="img-fluid"
+								src="./assets/archive/VISA.png"
+								alt="VISA"
+								width="25"
+								height="25"
+								draggable="false"
+							/>
+							&nbsp;VISA
+						</label>
+					</div>
 
-					<div id="floatingPasswordFeedback" class="feedback"></div>
+					<hr />
+
+					<h5 class="text-start">Card Information</h5>
+
+					<div class="form-floating mb-2">
+						<input
+							type="text"
+							class="form-control"
+							id="nameOnCard"
+							name="nameOnCard"
+							placeholder="Name on Card..."
+							required
+						/>
+						<label for="nameOnCard">Name on Card</label>
+					</div>
+
+					<div class="form-floating mb-4">
+						<input
+							type="number"
+							class="form-control"
+							id="cardNumber"
+							name="cardNumber"
+							placeholder="Card Number..."
+							required
+						/>
+						<label for="cardNumber">Card Number</label>
+					</div>
+
+					<div class="form-floating mb-2">
+						<input
+							type="date"
+							class="form-control"
+							id="expiry"
+							name="expiry"
+							placeholder="Expiry Date..."
+							required
+						/>
+						<label for="expiry">Expiry Date</label>
+					</div>
+
+					<div class="form-floating">
+						<input
+							type="number"
+							class="form-control"
+							id="code"
+							name="code"
+							placeholder="Security Code..."
+							required
+						/>
+						<label for="code">Security Code</label>
+					</div>
 				</div>
 
 				<!-- Submit button -->
-				<button class="w-100 btn btn-lg btn-primary mt-3 submit" type="submit">
-					Sign In
+				<button class="w-100 btn btn-lg btn-success mt-3 submit mt-3" type="submit">
+					<i class="bi bi-lock-fill"></i>&nbsp;Pay Securely
 				</button>
 
 				<!-- Copyright -->
@@ -136,7 +240,7 @@
 
 		<!-- Loading custom scripts -->
 		<script src="./scripts/other/consoleWarn.js"></script>
-		<script src="./scripts/admin/signIn.js"></script>
+		<script src="./scripts/videos/paid.js"></script>
 
 		<!-- Using JQuery scripts -->
 		<script>
