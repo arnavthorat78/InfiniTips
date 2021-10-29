@@ -39,7 +39,25 @@
 				<h1 class="h3 mb-3 fw-normal">Pay</h1>
 				<p class="text-muted lead">You must pay to access and watch videos.</p>
 
+				<!-- Overflow for scrolling (like an embedded iframe). Uses JavaScript to change the height. -->
 				<div class="overflow overflow-auto p-1">
+					<!-- Information about the purchase -->
+					<h4 class="text-start">Information</h4>
+					<div class="card rounded-2 shadow-sm">
+						<div class="card-body">
+							<span><i class="bi bi-bag-check-fill me-1"></i>&nbsp;Items:</span>
+							<strong> (1) Lifetime <i>InfiniTips</i> videos </strong>
+
+							<hr />
+
+							<span><i class="bi bi-cash-coin me-1"></i>&nbsp;Total:</span>
+							<strong class="lead">A$4.99</strong>
+						</div>
+					</div>
+
+					<hr />
+
+					<!-- The billing country, with selected countries -->
 					<h5 class="text-start">Billing Country</h5>
 					<select class="form-select" required>
 						<option value="australia" selected>Australia</option>
@@ -55,8 +73,9 @@
 						>
 					</div>
 
+					<!-- The payment method -->
 					<h5 class="text-start">Payment Method</h5>
-					<div class="form-check text-start mb-1">
+					<div class="form-check text-start mb-1" data-type>
 						<input
 							class="form-check-input"
 							type="radio"
@@ -76,119 +95,61 @@
 							&nbsp;PayPal
 						</label>
 					</div>
-					<div class="form-check text-start mb-1">
+					<div class="form-check text-start mb-1" data-type>
 						<input
 							class="form-check-input"
 							type="radio"
 							name="method"
-							id="mastercard"
+							id="creditDebit"
 						/>
-						<label class="form-check-label" for="mastercard">
+						<label class="form-check-label" for="creditDebit">
 							<img
-								class="img-fluid"
+								class="img-fluid me-1"
 								src="./assets/archive/Mastercard.png"
 								alt="Mastercard"
 								width="25"
 								height="25"
 								draggable="false"
 							/>
-							&nbsp;Mastercard
-						</label>
-					</div>
-					<div class="form-check text-start mb-1">
-						<input
-							class="form-check-input"
-							type="radio"
-							name="method"
-							id="americanExpress"
-						/>
-						<label class="form-check-label" for="americanExpress">
 							<img
-								class="img-fluid"
+								class="img-fluid me-1"
 								src="./assets/archive/American-Express.png"
 								alt="American Express"
 								width="25"
 								height="25"
 								draggable="false"
 							/>
-							&nbsp;American Express
-						</label>
-					</div>
-					<div class="form-check text-start mb-3">
-						<input class="form-check-input" type="radio" name="method" id="visa" />
-						<label class="form-check-label" for="visa">
 							<img
-								class="img-fluid"
+								class="img-fluid me-1"
 								src="./assets/archive/VISA.png"
 								alt="VISA"
 								width="25"
 								height="25"
 								draggable="false"
 							/>
-							&nbsp;VISA
+							&nbsp;Credit or Debit Card
 						</label>
 					</div>
 
 					<hr />
 
-					<h5 class="text-start">Card Information</h5>
-
-					<div class="form-floating mb-2">
-						<input
-							type="text"
-							class="form-control"
-							id="nameOnCard"
-							name="nameOnCard"
-							placeholder="Name on Card..."
-							required
-						/>
-						<label for="nameOnCard">Name on Card</label>
-					</div>
-
-					<div class="form-floating mb-4">
-						<input
-							type="number"
-							class="form-control"
-							id="cardNumber"
-							name="cardNumber"
-							placeholder="Card Number..."
-							required
-						/>
-						<label for="cardNumber">Card Number</label>
-					</div>
-
-					<div class="form-floating mb-2">
-						<input
-							type="date"
-							class="form-control"
-							id="expiry"
-							name="expiry"
-							placeholder="Expiry Date..."
-							required
-						/>
-						<label for="expiry">Expiry Date</label>
-					</div>
-
-					<div class="form-floating">
-						<input
-							type="number"
-							class="form-control"
-							id="code"
-							name="code"
-							placeholder="Security Code..."
-							required
-						/>
-						<label for="code">Security Code</label>
+					<!-- The display for the type. This defaults to PayPal, but JavaScript can change it depending on the type above. -->
+					<div class="typeDisplay">
+						<h4 class="text-center">Paying with PayPal</h4>
+						<p class="text-muted">Click the button below to pay with PayPal!</p>
 					</div>
 				</div>
 
-				<!-- Submit button -->
-				<button class="w-100 btn btn-lg btn-success mt-3 submit mt-3" type="submit">
-					<i class="bi bi-lock-fill"></i>&nbsp;Pay Securely
+				<!-- Submit button. This can be customized depending on the type with JavaScript. Defaults to PayPal. -->
+				<button class="w-100 btn btn-lg btn-primary mt-3 submit" type="submit">
+					<i class="bi bi-paypal"></i>&nbsp; Pay with PayPal
 				</button>
 
+				<!-- The information for the payment. -->
+				<div class="feedback mt-3"></div>
+
 				<!-- Copyright -->
-				<p class="mt-5 mb-3 text-muted">
+				<p class="mt-3 mb-3 text-muted">
 					Copyright &copy; 2021
 					<a class="text-reset fw-normal text-decoration-none" href="index.html"
 						>InfiniTips</a
@@ -217,30 +178,10 @@
 		<!-- Loading Google hosted JQuery scripts -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-		<!-- Loading and using Firebase scripts -->
-		<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-		<script>
-			// Your web app's Firebase configuration.
-			// For Firebase JS SDK v7.20.0 and later, measurementId is optional.
-			const firebaseConfig = {
-				apiKey: "AIzaSyBwgoow7mhrA3oLXhHeCsv_pX1zKGmQxPc",
-				authDomain: "infinitips-f336e.firebaseapp.com",
-				projectId: "infinitips-f336e",
-				storageBucket: "infinitips-f336e.appspot.com",
-				messagingSenderId: "1040500497251",
-				appId: "1:1040500497251:web:658bcdc25e0fff1af85156",
-				measurementId: "G-FHTJKDZ45V",
-			};
-
-			// Initialize Firebase
-			firebase.initializeApp(firebaseConfig);
-			const db = firebase.firestore();
-		</script>
-
 		<!-- Loading custom scripts -->
 		<script src="./scripts/other/consoleWarn.js"></script>
-		<script src="./scripts/videos/paid.js"></script>
+		<script src="./scripts/videos/pay.js"></script>
+		<script src="./scripts/videos/submitPay.js"></script>
 
 		<!-- Using JQuery scripts -->
 		<script>
