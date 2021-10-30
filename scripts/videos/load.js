@@ -24,7 +24,7 @@ const addVideo = (video, id) => {
 						video.duration === 1 ? `${video.duration} min` : `${video.duration} mins`
 					}</strong></span>
 
-                    <button class="btn btn-success btn-sm" data-id="${id}">
+                    <button class="btn btn-success btn-sm" data-id="${id}" title="Play video" data-type="BUTTON" data-bs-toggle="modal" data-bs-target="#watchVideo">
                         <i class="bi bi-play-circle"></i>
                     </button>
                 </div>
