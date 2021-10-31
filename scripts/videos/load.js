@@ -1,6 +1,13 @@
+// Getting elements required for function
 const loadingVideos = document.querySelector(".loadingVideos");
 const list = document.querySelector(".videos");
 
+/**
+ * Add a new video to the DOM.
+ * 
+ * @param {{ cover: string, title: string, description: string, duration: number }} video The video object for rendering (retrieved from Firebase).
+ * @param {string} id The unique ID for each video.
+ */
 const addVideo = (video, id) => {
 	let html = `
         <div class="col-lg-4 d-flex align-items-stretch" data-id="${id}">
@@ -31,10 +38,12 @@ const addVideo = (video, id) => {
             </div>
         </div>
     `;
-
+    
+    // Append to the start of the HTML
 	list.innerHTML = html + list.innerHTML;
 };
 
+// Get all of the videos
 db.collection("videos")
 	.get()
 	.then((snapshot) => {

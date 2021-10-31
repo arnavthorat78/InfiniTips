@@ -1,7 +1,13 @@
+// Getting vital DOM elements
 const allVideos = document.querySelector(".videos");
 const displayFeedback = document.querySelector(".feedback");
 const videoPopup = document.querySelector(".videoPopup");
 
+/**
+ * Display a video in the popup.
+ * 
+ * @param {{ title: string, iframe: string }} video The video object from Firebase.
+ */
 const displayVideo = (video) => {
 	let html = `
         <div class="modal-header">
@@ -22,11 +28,16 @@ const displayVideo = (video) => {
             </button>
         </div>
     `;
+
 	videoPopup.innerHTML = html;
 };
 
+// Wait for a click on the Play button on the list of all videos.
+// TODO Fix issue with button not responding when icon clicked.
 allVideos.addEventListener("click", (e) => {
+    // If the attribute data-type is a button (play button)...
 	if (e.target.getAttribute("data-type") === "BUTTON") {
+        // Make and set some loading content for the user
 		let loadingHTML = `
             <div class="modal-header">
                 <h5 class="modal-title" id="watchVideoLabel">
@@ -53,6 +64,7 @@ allVideos.addEventListener("click", (e) => {
         `;
 		videoPopup.innerHTML = loadingHTML;
 
+        // Inform the user that the video is still in progress
 		displayFeedback.classList.remove("text-danger", "text-success");
 		displayFeedback.classList.add("text-warning");
 		displayFeedback.innerHTML = `
@@ -62,12 +74,15 @@ allVideos.addEventListener("click", (e) => {
             <span>Getting data and displaying video...</span>
         `;
 
+        // Get the ID from the button
 		const id = e.target.getAttribute("data-id");
 
+        // Get a single document based on the ID
 		db.collection("videos")
 			.doc(id)
 			.get()
 			.then((snapshot) => {
+                // Show the video
 				displayVideo(snapshot.data());
 
 				displayFeedback.classList.remove("text-warning");
@@ -79,6 +94,7 @@ allVideos.addEventListener("click", (e) => {
 			.catch((err) => {
 				console.log(err);
 
+                // Inform the user that an error occured!
 				displayFeedback.classList.remove("text-warning");
 				displayFeedback.classList.add("text-danger");
 				displayFeedback.innerHTML = `
