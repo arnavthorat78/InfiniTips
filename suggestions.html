@@ -15,10 +15,9 @@
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css"
 		/>
-		<!-- Loading custom CSS -->
 		<!-- Loading icon and title -->
 		<link rel="icon" href="./assets/img/InfiniTips-Logo.png" />
-		<title>InfiniTips | Admin Panel</title>
+		<title>InfiniTips | Suggestions</title>
 	</head>
 	<body style="text-align: center">
 		<!-- Making the navbar -->
@@ -34,7 +33,7 @@
 						class="d-inline-block align-text-top"
 						draggable="false"
 					/>
-					InfiniTips <span class="text-muted lead">Admin</span>
+					InfiniTips
 				</a>
 				<button
 					class="navbar-toggler"
@@ -48,10 +47,10 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 
-				<!-- Adding navbar links and admin dashboard button -->
+				<!-- Adding navbar links -->
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<!-- No links are active, since the admin dashboard was a button. -->
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<!-- Active link since the current page is so -->
 						<li class="nav-item">
 							<a class="nav-link" href="index.html">
 								<i class="bi bi-house-door"></i>&nbsp;Home
@@ -63,11 +62,16 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="suggestions.html">
+							<a class="nav-link active" aria-current="page" href="suggestions.html">
 								<i class="bi bi-chat-dots"></i>&nbsp;Suggestions
 							</a>
 						</li>
 					</ul>
+
+					<!-- Adding admin dashboard button. This is not a link for checking if the user is already signed in. -->
+					<button class="btn btn-outline-primary d-flex adminDash">
+						<i class="bi bi-gear"></i>&nbsp;Admin Dashboard
+					</button>
 				</div>
 			</div>
 		</nav>
@@ -75,105 +79,70 @@
 		<!-- Title section -->
 		<section class="p-5 pb-3" id="title">
 			<div class="container-lg">
-				<h1 class="display-3">Admin Panel</h1>
+				<h1 class="display-3">Suggestions</h1>
 				<p class="text-muted lead">
-					Access all of the videos here! You can add or delete videos for the community to
-					view.
+					Here, you can post suggestions of what new videos should be posted!
 				</p>
 			</div>
 		</section>
 
-		<!-- Add Video section -->
-		<section class="p-5 pt-3 bg-light" id="add">
+		<section class="p-5 pt-3" id="add">
 			<div class="container-lg">
 				<div class="text-center">
-					<h2>Add Video</h2>
-					<p class="text-muted lead">Add a video here!</p>
+					<h2>Add Suggestion</h2>
+					<p class="text-muted lead">Add a suggestion here!</p>
+
+					<span class="mt-2 text-warning addPriority"></span>
 				</div>
 
-				<!-- Form for adding a new video. -->
 				<div class="row justify-content-center">
 					<div class="col-lg-6">
-						<form class="addVideo" style="text-align: start">
-							<div class="input-group mb-3">
+						<form class="addSuggestion" style="text-align: start">
+							<div class="input-group mb-2">
 								<span class="input-group-text">
-									<i class="bi bi-type"></i>
+									<i class="bi bi-person-circle"></i>
 								</span>
 								<input
 									type="text"
 									class="form-control"
-									id="title"
-									name="title"
-									placeholder="Title..."
+									id="name"
+									name="name"
+									placeholder="Name..."
 									required
 								/>
 							</div>
-
-							<div class="input-group mb-3">
-								<span class="input-group-text">
-									<i class="bi bi-card-text"></i>
-								</span>
-								<textarea
-									name="description"
-									id="description"
-									class="form-control"
-									placeholder="Description..."
-									rows="3"
-									required
-								></textarea>
-							</div>
-
-							<div class="input-group mb-1">
-								<span class="input-group-text">
-									<i class="bi bi-code-slash"></i>
-								</span>
-								<textarea
-									name="iframe"
-									id="iframe"
-									class="form-control"
-									placeholder="<iframe> tag for the video..."
-									rows="3"
-									required
-								></textarea>
-							</div>
-							<small class="text-muted mb-2">
-								This can be found on Vimeo at the toolbar on top of a video. Make
-								sure to remove the JavaScript import!
-							</small>
-
-							<br /><br />
-
-							<div class="input-group mb-1">
-								<span class="input-group-text">
-									<i class="bi bi-link-45deg"></i>
-								</span>
-								<input
-									type="text"
-									class="form-control"
-									id="cover"
-									name="cover"
-									placeholder="Cover photo link..."
-									required
-								/>
-							</div>
-							<small class="text-muted mb-2"
-								>Make sure it is a valid photo link!</small
+							<button
+								class="btn btn-outline-danger btn-sm mb-3 randomId"
+								type="button"
 							>
-
-							<br /><br />
+								Generate Random ID
+							</button>
 
 							<div class="input-group mb-3">
 								<span class="input-group-text">
-									<i class="bi bi-clock"></i>
+									<i class="bi bi-chat-dots-fill"></i>
 								</span>
 								<input
-									type="number"
+									type="text"
 									class="form-control"
-									id="duration"
-									name="duration"
-									placeholder="Duration..."
+									id="suggestion"
+									name="suggestion"
+									placeholder="Suggestion..."
 									required
 								/>
+							</div>
+
+							<div class="input-group mb-3">
+								<span class="input-group-text">
+									<i class="bi bi-three-dots"></i>
+								</span>
+								<textarea
+									name="elaborate"
+									id="elaborate"
+									class="form-control"
+									placeholder="Elaborate on your suggestion (optional)..."
+									rows="3"
+								></textarea>
 							</div>
 
 							<button class="btn btn-success mt-2" type="submit">
@@ -187,43 +156,35 @@
 			</div>
 		</section>
 
-		<!-- Video section -->
-		<section class="p-5 pt-3" id="videos">
+		<section class="p-5 pt-3" id="suggestions">
 			<div class="container-lg">
 				<div class="text-center">
-					<h2>Videos</h2>
-					<p class="text-muted lead">See the videos posted here!</p>
+					<h2>Suggestions</h2>
+					<p class="text-muted lead">See other's suggestions - and yours too!</p>
 				</div>
 
-				<!-- All of the videos. This is rendered by JavaScript. -->
-				<div class="videos">
-					<div class="card mt-3 shadow-sm loadingVideos">
-						<div class="card-body">
-							<div class="row">
-								<div class="col">
-									<div
-										class="spinner-border spinner-border-sm text-muted me-2"
-										role="status"
-									>
-										<span class="visually-hidden">Loading...</span>
-									</div>
-
-									<span class="lead me-2">Loading...</span>
-									<small class="text-muted me-5 text-break">
-										Please wait... we're just fetching the videos!
-									</small>
-								</div>
+				<div class="suggestionsList">
+					<div class="card rounded-2 shadow-sm m-2 loading">
+						<div class="card-header fw-bold h5 border-0">
+							<div class="spinner-border spinner-border-sm me-1" role="status">
+								<span class="visually-hidden">Loading...</span>
 							</div>
+							Getting suggestions...
+						</div>
+						<div class="card-body">Please wait while we get the suggestions!</div>
+						<div class="card-footer text-muted">
+							<small>InfiniTips</small>
 						</div>
 					</div>
 				</div>
-
-				<div class="deleteFeedback mt-3"></div>
 			</div>
 		</section>
 
 		<!-- Footer -->
-		<footer class="text-center text-lg-start bg-light text-muted border-top border-2">
+		<footer
+			class="text-center text-lg-start bg-light text-muted border-top border-2"
+			id="footer"
+		>
 			<section>
 				<div class="container text-center text-md-start mt-5">
 					<div class="row mt-3">
@@ -324,8 +285,10 @@
 
 		<!-- Loading custom scripts -->
 		<script src="./scripts/other/consoleWarn.js"></script>
-		<script src="./scripts/admin/valid.js"></script>
-		<script src="./scripts/admin/videoAdmin.js"></script>
+		<script src="./scripts/other/auth.js"></script>
+		<script src="./scripts/chat/priority.js"></script>
+		<script src="./scripts/chat/random.js"></script>
+		<script src="./scripts/chat/suggestions.js"></script>
 
 		<!-- Using JQuery scripts -->
 		<script>

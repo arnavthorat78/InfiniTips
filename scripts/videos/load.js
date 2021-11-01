@@ -4,7 +4,7 @@ const list = document.querySelector(".videos");
 
 /**
  * Add a new video to the DOM.
- * 
+ *
  * @param {{ cover: string, title: string, description: string, duration: number }} video The video object for rendering (retrieved from Firebase).
  * @param {string} id The unique ID for each video.
  */
@@ -38,13 +38,14 @@ const addVideo = (video, id) => {
             </div>
         </div>
     `;
-    
-    // Append to the start of the HTML
+
+	// Append to the start of the HTML
 	list.innerHTML = html + list.innerHTML;
 };
 
 // Get all of the videos
 db.collection("videos")
+	.orderBy("created_at", "asc")
 	.get()
 	.then((snapshot) => {
 		loadingVideos.classList.add("d-none");
