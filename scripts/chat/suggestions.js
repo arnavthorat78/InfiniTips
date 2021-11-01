@@ -12,7 +12,9 @@ const addSuggestionDOM = (suggestion, id) => {
 				suggestion.elaborate ? suggestion.elaborate : "<i>No elaboration was provided!</i>"
 			}</div>
             <div class="card-footer text-muted">
-                <small>${suggestion.name}</small>
+                <small>${suggestion.paid ? `<i class="text-warning bi bi-coin"></i>&nbsp; ` : ""}${
+		suggestion.name
+	}</small>
             </div>
         </div>
     `;
@@ -61,11 +63,13 @@ addSuggestion.addEventListener("submit", (e) => {
         <span>Adding suggestion...</span>
     `;
 
+	const paidUser = localStorage.getItem("authorizedVideos") ? true : false;
 	const now = new Date();
 	const suggestion = {
 		name: addSuggestion.name.value,
 		suggestion: addSuggestion.suggestion.value,
 		elaborate: addSuggestion.elaborate.value,
+		paid: paidUser,
 		created_at: firebase.firestore.Timestamp.fromDate(now),
 	};
 
