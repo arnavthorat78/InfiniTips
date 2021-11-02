@@ -1,9 +1,17 @@
+// Getting the list from the DOM
 const list = document.querySelector(".suggestionsList");
 const loading = document.querySelector(".loading");
 
+// Getting the elements for adding a suggestion
 const addSuggestion = document.querySelector(".addSuggestion");
 const feedback = document.querySelector(".feedback");
 
+/**
+ * Add a new suggestion to the DOM.
+ *
+ * @param {{ suggestion: string, elaborate: string, paid: boolean, name: string }} suggestion The suggestion object retrieved from Firebase.
+ * @param {string} id The identifier for each suggestion.
+ */
 const addSuggestionDOM = (suggestion, id) => {
 	let html = `
         <div class="card rounded-2 shadow-sm m-2" data-id="${id}">
@@ -19,9 +27,15 @@ const addSuggestionDOM = (suggestion, id) => {
         </div>
     `;
 
+	// Append to the start of the HTML
 	list.innerHTML = html + list.innerHTML;
 };
 
+/**
+ * Remove a suggestion from the DOM.
+ *
+ * @param {string} id The unique ID to find and remove.
+ */
 const deleteSuggestionDOM = (id) => {
 	const doc = document.querySelector(`[data-id="${id}"]`);
 
@@ -32,6 +46,7 @@ const deleteSuggestionDOM = (id) => {
 	}
 };
 
+// Get the suggestions, and order them so that the latest created one will show last.
 db.collection("suggestions")
 	.orderBy("created_at", "asc")
 	.onSnapshot((snapshot) => {
@@ -48,9 +63,12 @@ db.collection("suggestions")
 		});
 	});
 
+// Wait for a new suggestion to be submitted...
 addSuggestion.addEventListener("submit", (e) => {
+	// Prevent the page from reloading
 	e.preventDefault();
 
+	// Informing the user of the processes
 	feedback.classList.remove("text-success", "text-danger");
 	feedback.classList.add("text-warning");
 	feedback.innerHTML = `
@@ -63,6 +81,7 @@ addSuggestion.addEventListener("submit", (e) => {
         <span>Adding suggestion...</span>
     `;
 
+	// Making the Firebase object
 	const paidUser = localStorage.getItem("authorizedVideos") ? true : false;
 	const now = new Date();
 	const suggestion = {
@@ -73,6 +92,7 @@ addSuggestion.addEventListener("submit", (e) => {
 		created_at: firebase.firestore.Timestamp.fromDate(now),
 	};
 
+	// Adding to the database
 	db.collection("suggestions")
 		.add(suggestion)
 		.then(() => {

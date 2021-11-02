@@ -16,7 +16,7 @@
 			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css"
 		/>
 		<!-- Loading custom CSS -->
-		<link rel="stylesheet" href="./styles/signIn.css" />
+		<link rel="stylesheet" href="./styles/popup.css" />
 		<!-- Loading icon and title -->
 		<link rel="icon" href="./assets/img/InfiniTips-Logo.png" />
 		<title>InfiniTips | Pay</title>
@@ -51,7 +51,7 @@
 							<hr />
 
 							<span><i class="bi bi-cash-coin me-1"></i>&nbsp;Total:</span>
-							<strong class="lead">A$4.99</strong>
+							<span class="lead total">A$4.99</span>
 						</div>
 					</div>
 
@@ -59,7 +59,7 @@
 
 					<!-- The billing country, with selected countries -->
 					<h5 class="text-start">Billing Country</h5>
-					<select class="form-select" required>
+					<select class="form-select country" required>
 						<option value="australia" selected>Australia</option>
 						<option value="newZealand">New Zealand</option>
 						<option value="india">India</option>
@@ -182,6 +182,7 @@
 		<script src="./scripts/other/consoleWarn.js"></script>
 		<script src="./scripts/videos/pay.js"></script>
 		<script src="./scripts/videos/submitPay.js"></script>
+		<script src="./scripts/videos/totalPrice.js"></script>
 
 		<!-- Using JQuery scripts -->
 		<script>
